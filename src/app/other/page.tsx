@@ -1,3 +1,4 @@
+"use client";
 import RotatingText from "@/components/RotatingText";
 import StarBorder from "@/components/StarBorder";
 import Image from "next/image";

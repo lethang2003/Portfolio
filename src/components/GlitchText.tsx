@@ -1,3 +1,4 @@
+"use client";
 import { FC, CSSProperties } from "react";
 import "./GlitchText.css";
 

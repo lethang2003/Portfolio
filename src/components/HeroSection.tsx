@@ -1,3 +1,4 @@
+"use client";
 export default function HeroSection() {
   return (
     <section className="py-20 bg-gradient-to-b from-orange-100 to-white text-center">

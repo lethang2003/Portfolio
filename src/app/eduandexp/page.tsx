@@ -1,3 +1,4 @@
+"use client";
 import FuzzyText from "@/components/FuzzyText";
 import SpotlightCard from "@/components/SpotlightCard";
 

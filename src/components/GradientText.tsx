@@ -1,3 +1,4 @@
+"use client";
 import "./GradientText.css";
 import React, { ReactNode } from "react";
 
