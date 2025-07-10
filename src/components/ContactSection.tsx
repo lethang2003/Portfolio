@@ -14,14 +14,16 @@ const ContactSection = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
+
   const [statusMessage, setStatusMessage] = useState('');
 
   const handleAnimationComplete = () => {
     console.log('Animation completed!');
   };
 
-  const handleInputChange = (e) => {
+ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -29,7 +31,8 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
