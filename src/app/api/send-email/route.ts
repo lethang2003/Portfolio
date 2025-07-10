@@ -1,8 +1,8 @@
 // app/api/send-email/route.js
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const { name, email, subject, message } = await request.json();
 
@@ -112,25 +112,29 @@ export async function POST(request) {
       { status: 200 }
     );
 
-  } catch (error) {
-    console.error('Error sending email:', error);
-    
-    // More detailed error handling
-    if (error.code === 'EAUTH') {
+  } catch (error: unknown) {
+  console.error('Error sending email:', error);
+
+  if (error && typeof error === 'object' && 'code' in error) {
+    const err = error as { code?: string };
+
+    if (err.code === 'EAUTH') {
       return NextResponse.json(
         { error: 'Lỗi xác thực email. Vui lòng kiểm tra cấu hình.' },
         { status: 500 }
       );
-    } else if (error.code === 'ECONNECTION') {
+    } else if (err.code === 'ECONNECTION') {
       return NextResponse.json(
         { error: 'Không thể kết nối đến máy chủ email.' },
         { status: 500 }
       );
-    } else {
-      return NextResponse.json(
-        { error: 'Có lỗi xảy ra khi gửi email. Vui lòng thử lại.' },
-        { status: 500 }
-      );
     }
   }
+
+  return NextResponse.json(
+    { error: 'Có lỗi xảy ra khi gửi email. Vui lòng thử lại.' },
+    { status: 500 }
+  );
+}
+
 }
