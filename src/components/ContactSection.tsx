@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import GlitchText from "@/components/GlitchText";
 import SpotlightCard from "@/components/SpotlightCard";
 import { Phone, Mail, MapPin, Github, Send, User, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
 import BlurText from './BlurText';
@@ -61,7 +60,7 @@ const ContactSection = () => {
         setSubmitStatus('error');
         setStatusMessage(result.error || 'Có lỗi xảy ra khi gửi email.');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
       setStatusMessage('Không thể kết nối đến server. Vui lòng thử lại.');
     } finally {

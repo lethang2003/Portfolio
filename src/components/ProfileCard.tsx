@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import "./ProfileCard.css";

@@ -1,6 +1,5 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
-import GlitchText from "@/components/GlitchText";
 import BlurText from "@/components/BlurText";
 
 export default function ProjectsPage() {

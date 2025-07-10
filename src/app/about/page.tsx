@@ -9,7 +9,12 @@ export default function AboutPage () {
 //   const handleAnimationComplete = () => {
 //     console.log('Animation completed!');
 //   };
-
+  const scrollToContact = () => {
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
       <div className="flex flex-col items-center gap-6 mt-10">
           <GlitchText
@@ -171,7 +176,17 @@ export default function AboutPage () {
             
 
             {/* ProfileCard bên phải */}
-            <ProfileCard />
+            <ProfileCard
+  avatarUrl="thang_avt.jpg"
+  name="Le Thang"
+  title="Software Engineer"
+  handle="lethang2003"
+  status="Online"
+  contactText="Contact"
+  onContactClick={scrollToContact}
+  // các prop khác có thể dùng mặc định nên không cần truyền
+/>
+
           </div>
         </div>
   )}

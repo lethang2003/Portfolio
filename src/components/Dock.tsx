@@ -93,7 +93,8 @@ function DockItem({
       aria-haspopup="true"
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { isHovered })
+   cloneElement(child as React.ReactElement<any>, { isHovered })
+
       )}
     </motion.div>
   );
@@ -162,7 +163,7 @@ export default function Dock({
 
   const maxHeight = useMemo(
     () => Math.max(dockHeight, magnification + magnification / 2 + 4),
-    [magnification]
+    [magnification, dockHeight]
   );
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
