@@ -1,3 +1,4 @@
+"use client";
 // 'use client';
 // import Link from 'next/link';
 
@@ -19,7 +20,7 @@
 //     </nav>
 //   );
 // }
-"use client";
+
 import React, { useRef, useEffect, useState } from "react";
 
 interface GooeyNavItem {
