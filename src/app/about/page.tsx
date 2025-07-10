@@ -31,7 +31,7 @@ export default function AboutPage () {
                 showBorder={false}
                 className="custom-class text-4xl"
               >
-                Hello, I'm <br />
+              <p>I&apos;m a developer</p>
               </GradientText>
               <span className="text-4xl font-semibold">Le Phan Hung Thang</span>
               <br />

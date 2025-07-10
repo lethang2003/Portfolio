@@ -8,13 +8,12 @@ import Footer from "@/components/Footer";
 import Particles from "@/components/Particles";
 import {
   VscAccount,
-  VscArchive,
+
   VscFolder,
   VscHome,
   VscMail,
   VscMortarBoard,
-  VscRepo,
-  VscSettingsGear,
+
   VscSymbolMethod,
 } from "react-icons/vsc";
 import Dock from "@/components/Dock";
@@ -23,20 +22,12 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-import { useRouter } from "next/navigation";
-import ProfileCard from "@/components/ProfileCard";
-import ScrambledText from "@/components/ScrambledText";
-import GlitchText from "@/components/GlitchText";
-import GradientText from "@/components/GradientText";
-import GooeyNav from "@/components/GooeyNav";
+
+
 // import AnimatedList from "@/components/AnimatedList";
-import StarBorder from "@/components/StarBorder";
-import ShinyText from "@/components/ShinyText";
-import SpotlightCard from "@/components/SpotlightCard";
-import FuzzyText from "@/components/FuzzyText";
-import RotatingText from "@/components/RotatingText";
+
 import ProjectsPage from "./projects/page";
-import Image from "next/image";
+
 import ContactSection from "@/components/ContactSection";
 import AboutPage from "./about/page";
 import OtherPage from "./other/page";
@@ -52,7 +43,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
+
 
   const items = [
     {

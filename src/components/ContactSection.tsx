@@ -118,7 +118,7 @@ const ContactSection = () => {
           className="text-5xl md:text-6xl font-bold mb-6 text-center tracking-tight"
         />
         <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto leading-relaxed">
-          Let's collaborate and create something amazing together. I'm always excited to work on new projects and challenges.
+          Let&apos;s collaborate and create something amazing together. I&apos;m always excited to work on new projects and challenges.
         </p>
       </div>
 
@@ -305,7 +305,7 @@ const ContactSection = () => {
       <div className="text-center mt-16">
         <div className="inline-flex items-center gap-3 text-gray-400">
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"></div>
-          <span className="text-sm font-medium">Let's build something great together</span>
+          <span className="text-sm font-medium">Let&apos;s build something great together</span>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent"></div>
         </div>
       </div>

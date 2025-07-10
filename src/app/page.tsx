@@ -1,6 +1,4 @@
 "use client";
-
-import ProfileCard from "@/components/ProfileCard";
 import SplitText from "@/components/SplitText";
 import Threads from "@/components/Threads";
 import TrueFocus from "@/components/TrueFocus";
