@@ -40,7 +40,7 @@ export default function HomePage() {
 
         <div className="mt-10">
           <TrueFocus
-            sentence="Font-end  Back-end  Full-stack"
+            sentence="Front-end  Back-end  Developer"
             manualMode={false}
             blurAmount={5}
             borderColor="red"
