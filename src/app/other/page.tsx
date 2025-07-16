@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function OtherPage() {
   return (
-      <div className="mt-[300px] flex flex-col items-center gap-6">
-                <div className="flex items-center">    
+      <div className="mt-[150px] sm:mt-[200px] md:mt-[300px] flex flex-col items-center gap-6">
+                <div className="flex items-center justify-center text-center">    
                   {/* <ShinyText
                       text="Tech Stack"
                       disabled={false}
@@ -27,7 +27,7 @@ export default function OtherPage() {
     />
                     </div>
                     <br />
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-wrap justify-center gap-x-4 gap-y-6 mt-6">
                          <StarBorder
                       as="button"
                       className="custom-class"

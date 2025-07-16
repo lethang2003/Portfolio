@@ -1,22 +1,11 @@
-"use client";
+
 // app/layout.tsx
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 // import Navbar from "@/components/GooeyNav";
 import Particles from "@/components/Particles";
-import {
-  VscAccount,
-
-  VscFolder,
-  VscHome,
-  VscMail,
-  VscMortarBoard,
-
-  VscSymbolMethod,
-} from "react-icons/vsc";
-import Dock from "@/components/Dock";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -32,11 +21,17 @@ import ContactSection from "@/components/ContactSection";
 import AboutPage from "./about/page";
 import OtherPage from "./other/page";
 import EduAndExpPage from "./eduandexp/page";
+import ClientDockWrapper from "@/components/ClientDockWrapper";
 
-// export const metadata: Metadata = {
-//   title: "My Portfolio",
-//   description: "Giới thiệu bản thân và dự án",
-// };
+export const metadata: Metadata = {
+  title: "Le Thang | Portfolio",
+  description: "Introducing my portfolio, showcasing my skills and projects.",
+  icons: {
+    icon: "/thang_avt.jpg",
+   
+  },
+};
+
 
 export default function RootLayout({
   children,
@@ -45,47 +40,6 @@ export default function RootLayout({
 }>) {
 
 
-  const items = [
-    {
-      icon: <VscHome size={18} />,
-      label: "Home",
-       onClick: () => scrollToSection("home"),
-    },
-      {
-      icon: <VscAccount size={18} />,
-      label: "About Me",
- onClick: () => scrollToSection("about"),
-    },
-      {
-      icon: <VscSymbolMethod size={18} />,
-      label: "Other Skills",
- onClick: () => scrollToSection("other"),
-    },
-    {
-      icon: <VscMortarBoard size={18} />,
-      label: "Education and Experience",
-      onClick: () => scrollToSection("edaex"),
-
-    },
-    {
-      icon: <VscFolder size={18} />,
-      label: "My Projects",
-   onClick: () => scrollToSection("project"),
-    },
-  
-    {
-      icon: <VscMail size={18} />,
-      label: "Contact Me",
- onClick: () => scrollToSection("contact"),
-    },
-  ];
-
-  const scrollToSection = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
-  }
-};
 
   return (
     <html lang="vi">
@@ -177,13 +131,7 @@ export default function RootLayout({
 
         <Footer />
 
-        <Dock
-          items={items}
-          panelHeight={68}
-          baseItemSize={50}
-          magnification={70}
-          className="fixed z-50"
-        />
+       <ClientDockWrapper/>
       </body>
     </html>
   );

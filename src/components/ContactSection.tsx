@@ -175,7 +175,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           <div className="mt-12 p-6 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700/50">
             <h4 className="text-xl font-semibold text-white mb-4">Available for</h4>
             <div className="flex flex-wrap gap-3">
-              {['Full-time', 'Part-time', 'Freelance', 'Contract'].map((type) => (
+              {['Full-time', 'Part-time', 'Freelance', 'Contract', 'Remote'].map((type) => (
                 <span
                   key={type}
                   className="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-full text-sm font-medium text-purple-200"
