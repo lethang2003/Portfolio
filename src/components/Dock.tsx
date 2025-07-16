@@ -93,8 +93,7 @@ function DockItem({
       aria-haspopup="true"
     >
       {Children.map(children, (child) =>
-   cloneElement(child as React.ReactElement<any>, { isHovered })
-
+        cloneElement(child as React.ReactElement<any>, { isHovered })
       )}
     </motion.div>
   );
@@ -148,6 +147,35 @@ function DockIcon({ children, className = "" }: DockIconProps) {
   );
 }
 
+type MobileMenuItemProps = {
+  item: DockItemData;
+  onClose: () => void;
+};
+
+function MobileMenuItem({ item, onClose }: MobileMenuItemProps) {
+  const handleClick = () => {
+    item.onClick();
+    onClose();
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      className={`flex items-center justify-center w-12 h-12 rounded-full cursor-pointer hover:bg-white/10 transition-colors ${item.className || ""}`}
+      onClick={handleClick}
+      role="menuitem"
+      tabIndex={0}
+      whileTap={{ scale: 0.9 }}
+    >
+      <div className="flex items-center justify-center w-6 h-6 text-white">
+        {item.icon}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Dock({
   items,
   className = "",
@@ -160,6 +188,7 @@ export default function Dock({
 }: DockProps) {
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const maxHeight = useMemo(
     () => Math.max(dockHeight, magnification + magnification / 2 + 4),
@@ -168,41 +197,131 @@ export default function Dock({
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMobileMenuOpen && !(event.target as Element).closest('.mobile-menu-container')) {
+        closeMobileMenu();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMobileMenuOpen]);
+
   return (
-    <motion.div
-      style={{ height, scrollbarWidth: "none" }}
-      className="mx-2 flex max-w-full items-center"
-    >
+    <>
+      {/* Desktop Dock */}
       <motion.div
-        onMouseMove={({ pageX }) => {
-          isHovered.set(1);
-          mouseX.set(pageX);
-        }}
-        onMouseLeave={() => {
-          isHovered.set(0);
-          mouseX.set(Infinity);
-        }}
-        className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border-neutral-700 border-2 pb-2 px-4`}
-        style={{ height: panelHeight }}
-        role="toolbar"
-        aria-label="Application dock"
+        style={{ height, scrollbarWidth: "none" }}
+        className="mx-2 flex max-w-full items-center hidden md:flex"
       >
-        {items.map((item, index) => (
-          <DockItem
-            key={index}
-            onClick={item.onClick}
-            className={item.className}
-            mouseX={mouseX}
-            spring={spring}
-            distance={distance}
-            magnification={magnification}
-            baseItemSize={baseItemSize}
-          >
-            <DockIcon>{item.icon}</DockIcon>
-            <DockLabel>{item.label}</DockLabel>
-          </DockItem>
-        ))}
+        <motion.div
+          onMouseMove={({ pageX }) => {
+            isHovered.set(1);
+            mouseX.set(pageX);
+          }}
+          onMouseLeave={() => {
+            isHovered.set(0);
+            mouseX.set(Infinity);
+          }}
+          className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border-neutral-700 border-2 pb-2 px-4`}
+          style={{ height: panelHeight }}
+          role="toolbar"
+          aria-label="Application dock"
+        >
+          {items.map((item, index) => (
+            <DockItem
+              key={index}
+              onClick={item.onClick}
+              className={item.className}
+              mouseX={mouseX}
+              spring={spring}
+              distance={distance}
+              magnification={magnification}
+              baseItemSize={baseItemSize}
+            >
+              <DockIcon>{item.icon}</DockIcon>
+              <DockLabel>{item.label}</DockLabel>
+            </DockItem>
+          ))}
+        </motion.div>
       </motion.div>
-    </motion.div>
+
+      {/* Mobile Menu */}
+      <div className="md:hidden mobile-menu-container">
+        {/* Mobile Menu Button */}
+        <motion.button
+          onClick={toggleMobileMenu}
+          className="fixed bottom-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center"
+          whileTap={{ scale: 0.95 }}
+          aria-label="Open menu"
+        >
+          <motion.div
+            animate={{ rotate: isMobileMenuOpen ? 45 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-white"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </motion.div>
+        </motion.button>
+
+        {/* Mobile Menu Items */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              className="fixed bottom-20 right-4 z-40 flex flex-col gap-2"
+              role="menu"
+              aria-label="Mobile menu"
+            >
+              {items.map((item, index) => (
+                <MobileMenuItem
+                  key={index}
+                  item={item}
+                  onClose={closeMobileMenu}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Mobile Menu Backdrop */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-30 bg-black/20 backdrop-blur-sm"
+              onClick={closeMobileMenu}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+    </>
   );
 }

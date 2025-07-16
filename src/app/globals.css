@@ -126,3 +126,7 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+html, body {
+  @apply overflow-x-hidden;
+}

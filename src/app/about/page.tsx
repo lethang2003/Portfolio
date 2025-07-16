@@ -29,7 +29,7 @@ export default function AboutPage () {
           {/* Phần này là 2 thành phần nằm ngang nhau */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-6 px-4">
             {/* ScrambledText bên trái */}
-            <div className=" text-center md:text-left">
+            <div className="text-left">
               <GradientText
                 colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                 animationSpeed={3}
