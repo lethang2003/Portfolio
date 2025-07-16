@@ -53,140 +53,74 @@ export default function AboutPage () {
                 GitHub Copilot, etc.)
               </ScrambledText>
               <br />
-              <div>
-                <ShinyText
-                  text="Front-end Skills"
-                  disabled={false}
-                  speed={3}
-                  className="custom-class text-2xl font-semibold mb-2"
-                />
-                <br />
+             {/* Front-end skills */}
+          <div>
+            <ShinyText
+              text="Front-end Skills"
+              disabled={false}
+              speed={3}
+              className="text-xl md:text-2xl font-semibold mb-2"
+            />
+            <div className="flex flex-wrap gap-2 mt-2">
+              {[
+                "ReactJS",
+                "NextJS",
+                "React Native",
+                "Bootstrap CSS",
+                "Tailwind CSS",
+                "Material UI",
+                "AntDesign",
+              ].map((skill) => (
                 <StarBorder
+                  key={skill}
                   as="button"
-                  className="custom-class"
                   color="cyan"
                   speed="5s"
+                  className="px-3 py-1"
                 >
-                  ReactJS
+                  {skill}
                 </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  NextJS
-                </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  React Native
-                </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  Bootstrap CSS
-                </StarBorder>
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  Tailwind CSS
-                </StarBorder>
-                <br />
-                <StarBorder
-                  as="button"
-                  className="custom-class mt-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  Material UI
-                </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2 mt-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  AntDeign
-                </StarBorder>
-              </div>
-
-              <br />
-              <div className="">
-                <ShinyText
-                  text="Back-end Skills"
-                  disabled={false}
-                  speed={3}
-                  className="custom-class text-2xl font-semibold mb-2"
-                />
-                <br />
-                <StarBorder
-                  as="button"
-                  className="custom-class"
-                  color="cyan"
-                  speed="5s"
-                >
-                  ExpressJS
-                </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  NodeJS
-                </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  NestJS
-                </StarBorder>
-
-                <StarBorder
-                  as="button"
-                  className="custom-class ml-2"
-                  color="cyan"
-                  speed="5s"
-                >
-                  RESTful API
-                </StarBorder>
-              </div>
-
-             
+              ))}
             </div>
+          </div>
 
-            
-
-            {/* ProfileCard bên phải */}
-            <ProfileCard
-  avatarUrl="thang_avt.jpg"
-  name="Le Thang"
-  title="Software Engineer"
-  handle="lethang2003"
-  status="Online"
-  contactText="Contact"
-  onContactClick={scrollToContact}
-  // các prop khác có thể dùng mặc định nên không cần truyền
-/>
-
+          {/* Back-end skills */}
+          <div className="mt-6">
+            <ShinyText
+              text="Back-end Skills"
+              disabled={false}
+              speed={3}
+              className="text-xl md:text-2xl font-semibold mb-2"
+            />
+            <div className="flex flex-wrap gap-2 mt-2">
+              {["ExpressJS", "NodeJS", "NestJS", "RESTful API"].map((skill) => (
+                <StarBorder
+                  key={skill}
+                  as="button"
+                  color="cyan"
+                  speed="5s"
+                  className="px-3 py-1"
+                >
+                  {skill}
+                </StarBorder>
+              ))}
+            </div>
           </div>
         </div>
-  )}
+
+        {/* RIGHT: Profile card */}
+        <div className="w-full md:w-1/3 flex justify-center md:justify-end">
+          <ProfileCard
+            avatarUrl="thang_avt.jpg"
+            name="Le Thang"
+            title="Software Engineer"
+            handle="lethang2003"
+            status="Online"
+            contactText="Contact"
+            onContactClick={scrollToContact}
+          />
+        </div>
+      </div>
+      </div>
+  );
+}
