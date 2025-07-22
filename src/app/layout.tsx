@@ -22,6 +22,7 @@ import AboutPage from "./about/page";
 import OtherPage from "./other/page";
 import EduAndExpPage from "./eduandexp/page";
 import ClientDockWrapper from "@/components/ClientDockWrapper";
+import KiotVietPage from "./kiotviet/page";
 
 export const metadata: Metadata = {
   title: "Le Thang | Portfolio",
@@ -119,6 +120,11 @@ export default function RootLayout({
   rotationInterval={2000}
 /> */}
 
+
+</div>
+<div id="kiotviet" className="flex flex-col items-center gap-6 mt-[200px]">
+
+<KiotVietPage/>
 
 </div>
 

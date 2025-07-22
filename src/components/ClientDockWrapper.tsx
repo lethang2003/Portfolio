@@ -2,6 +2,7 @@
 "use client";
 
 import Dock from "@/components/Dock";
+import { BsCashStack } from "react-icons/bs";
 import {
   VscAccount,
   VscFolder,
@@ -45,6 +46,16 @@ export default function ClientDockWrapper() {
       label: "My Projects",
       onClick: () => scrollToSection("project"),
     },
+    {
+  icon: (
+    <div className="bg-blue-500 text-white p-1 rounded">
+      <BsCashStack size={18} />
+    </div>
+  ),
+  label: "KiotViet Price",
+  onClick: () => scrollToSection("kiotviet"),
+},
+
     {
       icon: <VscMail size={18} />,
       label: "Contact Me",
