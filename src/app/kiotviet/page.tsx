@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FaGlobe } from 'react-icons/fa';
 
 export default function KiotVietPage() {
-  const [language, setLanguage] = useState<'vi' | 'en'>('vi');
+  const [language, setLanguage] = useState<'vi' | 'en'>('en');
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === 'vi' ? 'en' : 'vi'));
